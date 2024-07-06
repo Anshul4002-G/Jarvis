@@ -53,7 +53,7 @@ def speak(text):
 def aiprocess(command): # api subcription required to perform this function 
    
    client=OpenAI(
-     api_key="sk-proj-jnRxeS5FUg3DwOJtUN7hT3BlbkFJ9pTFwnXaOeZZGDYJ93O7"
+     api_key=" "
      )
    completion = client.chat.completions.create(
    model="gpt-3.5-turbo",
