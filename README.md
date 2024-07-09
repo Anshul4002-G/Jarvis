@@ -1,5 +1,5 @@
-# Jarvis
-voice assistant
+# voice assisstant jarvis
+
 
 
 #  jarvis
@@ -53,12 +53,12 @@ def speak(text):
 def aiprocess(command): # api subcription required to perform this function 
    
    client=OpenAI(
-     api_key=" "
+     api_key="sk-proj-jnRxeS5FUg3DwOJtUN7hT3BlbkFJ9pTFwnXaOeZZGDYJ93O7",
      )
    completion = client.chat.completions.create(
    model="gpt-3.5-turbo",
    messages=[
-        {"role":"sysytem" ,"content":"you arfe a ppoetic assistent , skilled in explinning complex problems sh as alexa "},
+        {"role":"sysytem" ,"content":"you are a poetic assistent , skilled in explianing complex problems sh as alexa "},
         {"role":"user","content":command}
        ]
    )
@@ -67,19 +67,33 @@ def aiprocess(command): # api subcription required to perform this function
 
 #  task that can be called to jarvis to perform 
 def processcommand(c):
-   if "open google" in c.lower():
+   
+  if "open google" in c.lower():
       webbrowser.open("https://google.com/")
-   elif "open facebook" in c.lower():
+
+  elif "open facebook" in c.lower():
       webbrowser.open("https://facebook.com")
-   elif "open chatgpt" in c.lower():
-      webbrowser.open("hhttps://gemini.google.com/app/ae3710fe91f8ff5b?hl=en_GB")
-   elif "open linkedin" in c.lower():
+
+  elif "open linkedin" in c.lower():
       webbrowser.open("https://linkedin.com")
-   elif "open instagram" in c.lower():
+
+  elif "open github" in c.lower():
+      webbrowser.open("https://github.com")
+
+  elif "open instagram" in c.lower():
       webbrowser.open("https://instagram.com")
-   elif "open youtube" in c.lower():
+
+  elif "open helper" in c.lower():
+      webbrowser.open("https://gemini.google.com/app?gad_source=1")
+
+
+  elif "open youtube" in c.lower():
       webbrowser.open("https://www.youtube.com/watch?v=M4KA0sB14Eo")
-   elif "news" in c.lower():
+
+  elif "open Github" in c.lower():
+      webbrowser.open("https://github.com/")
+
+  elif "news" in c.lower():
       r= requests.get(f"https://newsapi.org/v2/top-headlines?country=in&apikey={newsapi}")
       if r.status_code==200:
          data = r.json()
@@ -87,16 +101,20 @@ def processcommand(c):
          articles=data.get('article',[])
 
          for article in articles:
-            print(article['title'])
+            speak(article['title'])
 
-   elif c.lower().startswith("play"):
+  elif c.lower().startswith("play"):
       song=c.lower().split(" ")[1]
       link=musiclibrary.music[song]
       webbrowser.open(link)
-   else:
+
+
+  else:
       # let open ai ghandle the request
       output=aiprocess(c)
       speak(output)
+
+
 
 if __name__ == "__main__":
     speak("initialising jarvis")
@@ -127,6 +145,5 @@ if __name__ == "__main__":
 
     
     
-
 
 
